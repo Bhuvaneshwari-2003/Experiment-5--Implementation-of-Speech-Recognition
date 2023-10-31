@@ -16,8 +16,25 @@ Step 7:Print the transcribed text on the console if the transcribe process was s
 Step 8:Handle any potential errors during the transcribing process. If the audio is not clear, print "not clear". If there's an error while trying to retrieve the transcribed text from the Google speech recognizer, print "Couldnt get results from google speech recognizer".<br>
 
 ## Program:
+```
+import speech_recognition as sr
+file = "audio.wav"
+r = sr.Recognizer()
+with sr.AudioFile(file) as source:
+    audio = r.record(source)
+try:
+    text = r.recognize_google(audio)
+except sr.UnknownValueError:
+    print("Not clear")
+except sr.RequestError as e:
+    print("Couldn't get results from Google Speech Recognition service; {0}".format(e))
 
+for line in text.splitlines():
+    print(line)
+```
 
 ## Output:
+![image](https://github.com/Bhuvaneshwari-2003/Experiment-5--Implementation-of-Speech-Recognition/assets/94828604/3feacdb7-b33d-46e1-8da3-4a8e57ae3c40)
 
 ## Result:
+Thus, we have implemented a program that will transcribe the audio file in the file variable and print the transcribed text on the console, one line at a time.
